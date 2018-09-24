@@ -1,0 +1,18 @@
+{% load staticfiles %}
+{% for obj in Comments_list %}
+{% if obj.to == dashboard_form.instance.id %}
+<tr>
+  <td>  {% if obj.image %}
+        <img src="{{ obj.image.url }}" width="40" height="40" class="img-circle">
+        {% else %}
+        <img width="40" height="40" class="img-circle" src="{% static 'images/not.png' %}">
+        {%endif%}
+        <strong>{{obj.commented_by}}<br></strong>
+        <div class="comment" style="margin-left:20px; margin-top:10px; font-style: italic;font-family: "muli italic", sans-serif;">
+
+      {{obj.comment}}</div>
+
+      </td>
+</tr>
+{%endif%}
+{%endfor%}

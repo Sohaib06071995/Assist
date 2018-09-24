@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/UserAccount/drobdwon.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% for obj in pending_activities %}
+{% if "pending" in obj.Status%}
+<tr>
+  <td>{{obj.id}}</td>
+  <td>{{obj.Active_Description}}</td>
+  <td>
+  {% for assTo in obj.Assigned_To.all %}
+  {{assTo}}
+  <br>
+  {%endfor%}
+  </td>
+  <td>{{obj.Assigned_By}}</td>
+  <td>{{obj.Activity_Type}}</td>
+  <td>{{obj.Exceting_Agency}}</td>
+  <td>{{obj.Action_Required}}</td>
+  <td>{{obj.Assigned_Date}}</td>
+  <td>{{obj.Deadline}}</td>
+  <td>{{obj.Associated_with}}</td>
+  <td>
+
+    <body>
+      <div class="dropup">
+
+  <i class="fa fa-cog fa-spin fa-2x"style="margin-top:5px; margin-left:20px; "></i>
+  <i class="fa fa-cog fa-spin fa-1x" style="position:fixed;margin-left:-3px;margin-top:0.3%;  "></i>
+  <i class="fa fa-cog fa-spin fa-1x" style="position:fixed; margin-left:-5px; margin-top:1.5%;"></i>
+    <div class="dropup-content">
+      <button class=" btn default btn-xs blue show-form-update" data-url="{% url 'update_activitiess' obj.id %}" style=" position:relative; margin-top:10%">
+      <span class="glyphicon glyphicon-pencil"></span>
+Edit
+      </button>
+      <button class=" btn default btn-xs black show-form-delete" style=" position:relative;" data-url="{% url 'delete_activitiess' obj.id %}">
+        <span class="glyphicon glyphicon-trash"></span>
+Delete
+      </button>
+      <button class=" btn default btn-xs black show-form" style=" position:relative;" data-url="{% url 'register_comments' %}">
+        <span class="glyphicon glyphicon-dashboard"></span>
+Dashboard
+      </button>
+    </div>
+  </div>
+</td>
+</tr>
+  {% endif %}
+  {% endfor %}

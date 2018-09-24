@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+    {% block head %}
+    <style media="screen">
+    div.container {
+  width: 80%;
+  margin-top: 10%
+}
+.nav-tabs>li>a{
+  color: #337ab7;
+}
+body{
+  background-color: #e8edf3;
+}
+.container{
+  background-color: white;
+}
+    </style>
+    
+
+    {% endblock %}
+    {% block image %}
+    {% if user.user_account.image %}
+    <img src="{{ user.user_account.image.url }}" width="35" height="35" class="img-circle">
+    {% else %}
+    <img width="40" height="40" class="img-circle" src="{% static 'images/not.png' %}">
+    {% endif %}
+    {{user}}
+    {% endblock %}
+
+    {% block xx%}
+    {%include "UserAccount/notification.html"%}
+    {% endblock %}
+    {% block body %}
+    {% include "Activities/activities.html" %}
+    {% endblock %}

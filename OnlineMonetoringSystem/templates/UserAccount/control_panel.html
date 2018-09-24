@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+<h1>Home</h1>
+    {% block head %}
+  {% load staticfiles %}
+      <script src="{% static 'js/plugin.js' %}"></script>
+      <!--  -->
+      <!-- BEGIN GLOBAL MANDATORY STYLES -->
+      <link rel="stylesheet" href="{% static 'assets/global/plugins/select2/select2.css' %}" type="text/css">
+      <link rel="stylesheet" href="{% static 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css' %}" type="text/css">
+      <!--  -->
+      <style media="screen">
+       .nav-tabs>li>a{
+        color: #337ab7;
+      }
+      </style>
+    {% endblock %}
+    {% block image %}
+    {% if user.user_account.image %}
+      <img src="{{ user.user_account.image.url }}" width="40" height="40" class="img-circle">
+      {% else %}
+      <img width="40" height="40" class="img-circle" src="{% static 'images/not.png' %}">
+      {% endif %}
+    {{user}}
+    {% endblock %}
+      {% block content1 %}
+      {% endblock %}
+    {% block body %}
+    <div class="content" id="success" style="display: none; margin-top: -1%; margin-left: 40%; font-size: 30px;" >Securely<img src="{% static 'images/tick.png' %}" alt="">Saved</div>
+    <div class="container">
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a data-toggle="tab" href="#home">User Accounts</a></li>
+    <li><a data-toggle="tab" href="#menu1">Dictionaries</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>User Accounts</h3>
+      <table class="table table-striped table-hover table-bordered" id="user_account_table" cellspacing="0" width="100%" >
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>User Full Name</th>
+            <th>Position Title</th>
+            <th>Username</th>
+            <th>User Type</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% include "UserAccount/user_list.html" %}
+        </tbody>
+
+    </table>
+      <button class=" btn btn-primary show-form" data-url="{% url 'register_user' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      New User
+    </button>
+  </div>
+
+    <div id="menu1" class="tab-pane fade">
+      <h3>Dictionaries</h3>
+        {% include "Dictionary/dictionary.html" %}
+</div>
+</div>
+</div>
+
+<div class="modal fade in" id="modal-user">
+  <div class="modal-dialog">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<script src="{% static 'assets/global/plugins/select2/select2.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js' %}"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+    $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+  } );
+
+$('table.table').DataTable( {
+  
+} );
+
+} );
+</script>
+
+    {% endblock %}

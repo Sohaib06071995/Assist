@@ -1,0 +1,87 @@
+.test{
+ -moz-opacity: 0.6;
+ -ms-opacity: 0.6;
+ -webkit-opacity: 0.6;
+ opacity: 0.6;
+}
+input[type=text], select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0px;
+    display: inline-block; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=password], select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0px;
+    display: inline-block; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=email], select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 8px 0px;
+    display: inline-block; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.controls #id_user_type {
+  height: 40px;
+}
+#div_id_user_full_name{
+  width: 45%;
+
+}
+#div_id_position_title{
+  width: 45%;
+
+}
+#div_id_user_type{
+  width: 45%;
+
+}
+#id_user_type{
+  height: 100%;
+}
+#div_id_user_name{
+  width: 45%;
+  position: fixed;
+  margin-left: 50%;
+  margin-top: -42%;
+}
+#div_id_username{
+  width: 45%;
+}
+#div_id_password{
+  width: 45%;
+  margin-left: 50%;
+  position: fixed;
+
+}
+#div_id_confirm_password{
+  width: 45%;
+  margin-left: 50%;
+  position: fixed;
+  margin-top: 14%;
+}
+#div_id_password1{
+  width: 45%;
+  margin-left: 50%;
+  position: fixed;
+  margin-top: -25%;
+}
+#div_id_password2{
+  width: 45%;
+  margin-left: 50%;
+  position: fixed;
+  margin-top: -11%;
+}
+.modal-dialog{
+  margin-top: 15%;
+}

@@ -1,0 +1,26 @@
+{% load staticfiles %}
+  {% for u in user1  %}
+  <tr>
+    <td>{% if u.image %}
+      <img src="{{ u.image.url }}" width="50" height="50" class="img-circle">
+      {% else %}
+      <img width="40" height="40" class="img-circle" src="{% static 'images/not.png' %}">
+      {% endif %}</td>
+    <td>{{u.user}}</td>
+    <td>{{u.position_title}}</td>
+    <td>{{u.user_name}}</td>
+    <td>{{u.user_type}}</td>
+
+    <td>  <button class=" btn default btn-xs yellow show-form-update" data-url="{% url 'update_user' u.user u.id %}" style=" position:relative; margin-left: 30%; margin-top:10%">
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    </button></td>
+    <td>  <button class=" btn default btn-xs red show-form-delete" data-url="{% url 'delete_user' u.id u.user %}" style=" position:relative; margin-left: 30%; margin-top:10%">
+      <span class="glyphicon glyphicon-trash"></span>
+      Delete
+    </button></td>
+  </tr>
+  {% endfor %}
+  <!-- <tr>
+    <td colspan="7" class="text-center bg-warning">NO user</td>
+  </tr> -->

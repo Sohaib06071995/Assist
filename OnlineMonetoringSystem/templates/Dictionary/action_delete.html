@@ -1,0 +1,23 @@
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/UserAccount/user_create.css' %}">
+<script src="{% static 'js/plugin1.js' %}"></script>
+<form method="post" data-url="{% url 'delete_action' ua1.id  %}" class="delete_action">
+      <div class="modal-header alert-info" style="height:50px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        <div class="text-left" style="font-size:18px; color:black;">
+                <b>Delete Action </b>
+            </div>
+      </div>
+      <div class="modal-body">
+          {% csrf_token %}
+        <p class="lead">Are You Sure You Want To Delete This Action?  <strong>{{ua1.Actions}}</strong> </p>
+      </div>
+      <div class="modal-footer alert-info" style="height:60px;">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-danger">Delete Action</button>
+      <!-- <div class="content1" id="notsuccess" style=" display: none; margin-right:60%;margin-top: -7.5%; font-size: 20px;" >OPS!<img src="{% static 'images/ignor.png' %}" alt="">Check Again</div> -->
+      </div>
+</form>

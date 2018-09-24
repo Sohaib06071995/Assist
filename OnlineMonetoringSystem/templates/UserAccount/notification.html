@@ -1,0 +1,223 @@
+{% load staticfiles %}
+    {%if 'normal' in type %}
+    {% for obj in Comments_list %}
+    {% for obj2 in pending_activities1 %}
+    {% if obj.to == obj2.id %}
+    {% if obj.comment_notification == 0 %}
+    <tr id="btx">
+      <td>
+      <div class="good"> <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.to %}" style=" position:relative;"><strong style="font-weight:normal;">
+        <div class="notification" style="height:30px;">
+          {% if obj.image %}
+            <img src="{{ obj.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.commented_by}}</strong>  at: {{obj.created_at}}<br>
+
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase commented on activity
+                    </div>
+                  </a> </div>
+                <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_comment_notification' obj.id %}"  onclick="block_none()" id="bt">
+                  Delete
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+          </td>
+    </tr>
+    {% else %}
+    {% if obj.comment_notification == 1 %}
+    {% if obj.comment_notification_by != user.username %}
+    <tr id="btx">
+      <td>
+        <div class="good"> <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.to %}" style=" position:relative;">
+        <div class="notification" style="height:30px;">
+          {% if obj.image %}
+            <img src="{{ obj.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.commented_by}}</strong>  at: {{obj.created_at}}<br>
+
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase commented on activity
+                    </div>
+                  </a></div>
+                <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_comment_notification' obj.id %}"  onclick="block_none()" id="bt">
+                  Delete
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+
+          </td>
+    </tr>
+    {%endif %}
+    {%endif %}
+    {%endif%}
+    {%endif%}
+    {%endfor%}
+    {%endfor%}
+    {% else %}
+    {% for obj in Comments_list %}
+    {% if obj.comment_notification == 0 %}
+    <tr>
+      <td>
+      <div class="good">  <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.to %}" style=" position: relative ">
+        <div class="notification" style="height:30px;">
+          {% if obj.image %}
+            <img src="{{ obj.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.commented_by}}</strong>  at: {{obj.created_at}}<br>
+
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase commented on activity
+                    </div>
+                  </a></div>
+                <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_comment_notification' obj.id %}" id="bt" onclick="block_none()">
+                  Delete
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+
+          </td>
+    </tr>
+    {% else %}
+    {% if obj.comment_notification == 1 %}
+    {% if obj.comment_notification_by != user.username %}
+    <tr id="btx">
+      <td>
+        <div class="good"> <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.to %}" style=" position:relative;">
+        <div class="notification" style="height:30px;">
+          {% if obj.image %}
+            <img src="{{ obj.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.commented_by}}</strong>  at: {{obj.created_at}}<br>
+
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase commented on activity
+                    </div>
+                  </a></div>
+                <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_comment_notification' obj.id %}"  onclick="block_none()" id="bt">
+                  Delete
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+
+          </td>
+    </tr>
+    {%endif %}
+    {%endif %}
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+
+<!-- End of comment notification  -->
+
+
+    {%if 'normal' in type %}
+    {% for obj in pending_activities1 %}
+    {% if obj.Progress_Date %}
+    {% if obj.progress_notification == 0 %}
+    <tr>
+      <td>
+      <div class="good">  <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.id %}" style=" position:relative;">
+        <div class="notification" style=" height:30px;">
+          {% if obj.progress_by.user_account.image %}
+            <img src="{{ obj.progress_by.user_account.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.progress_by}}</strong>  at: {{obj.Progress_Date}}<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase Updated progress
+            </div>
+            </a></div>
+            <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_progress_notification' obj.id %}" id="bt1" onclick="block_none()">
+              Delete
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+
+          </td>
+    </tr>
+    {% else %}
+    {% if obj.progress_notification == 1 %}
+    {% if obj.progress_notification_by != user.username %}
+    <tr>
+      <td>
+
+      <div class="good">  <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.id %}" style=" position:relative;">
+        <div class="notification" style=" height:30px;">
+          {% if obj.progress_by.user_account.image %}
+            <img src="{{ obj.progress_by.user_account.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.progress_by}}</strong>  at: {{obj.Progress_Date}}<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase Updated progress
+            </div>
+            </a></div>
+            <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_progress_notification' obj.id %}" id="bt1" onclick="block_none()">
+              Delete
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+
+          </td>
+    </tr>
+    {%endif%}
+    {%endif%}
+    {%endif%}
+
+    {%endif%}
+    {%endfor%}
+    {% else %}
+
+    {% for obj in pending_activities %}
+    {% if obj.Progress_Date %}
+    {% if obj.progress_notification == 0 %}
+    <tr>
+      <td>
+
+      <div class="good">  <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.id %}" style=" position:relative;">
+        <div class="notification" style=" height:30px;">
+          {% if obj.progress_by.user_account.image %}
+            <img src="{{ obj.progress_by.user_account.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.progress_by}}</strong>  at: {{obj.Progress_Date}}<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase Updated progress
+            </div>
+            </a></div>
+            <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_progress_notification' obj.id %}" id="bt1" onclick="block_none()">
+              Delete
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+
+          </td>
+    </tr>
+    {% else %}
+    {% if obj.progress_notification == 1 %}
+    {% if obj.progress_notification_by != user.username %}
+    <tr>
+      <td>
+
+      <div class="good">  <a id="mylink" class="show-form-dashboard2" data-url="{% url 'show_dashboard' obj.id %}" style=" position:relative;">
+        <div class="notification" style=" height:30px;">
+          {% if obj.progress_by.user_account.image %}
+            <img src="{{ obj.progress_by.user_account.image.url }}" width="30" height="30" class="img-circle">
+            {% else %}
+            <img width="30" height="30" class="img-circle" src="{% static 'images/not.png' %}">
+            {%endif%}
+            <strong>{{obj.progress_by}}</strong>  at: {{obj.Progress_Date}}<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hase Updated progress
+            </div>
+            </a></div>
+            <button class="btn default btn-xs show-form-update1" data-url="{% url 'update_progress_notification' obj.id %}" id="bt1" onclick="block_none()">
+              Delete
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+          </td>
+    </tr>
+    {%endif%}
+    {%endif%}
+    {%endif%}
+    {%endif%}
+    {%endfor%}
+
+    {%endif%}

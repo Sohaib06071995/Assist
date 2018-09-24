@@ -1,0 +1,96 @@
+
+.modal-content{
+width: 100%;
+}
+.modal-body{
+  padding-top: 5%;
+  padding-left: 20px;
+  padding-right: 50px;
+
+}
+.controls{
+  width: 120%;
+}
+.control-group label{
+
+  margin-left: 12px;
+}
+.control-group{
+  width: 40%;
+  margin-top: 10px;
+}
+#div_id_Assigned_Date{
+  margin-left: 60%;
+  margin-top: -57%;
+}
+#id_Assigned_Date{
+  margin-top: -2%;
+  border-radius: 0px;
+  height: 35px;
+
+}
+#div_id_Deadline{
+  margin-left: 60%;
+  margin-top: -1%;
+}
+#div_id_Associated_with{
+  margin-left: 60%;
+}
+#div_id_Status{
+  margin-left: 60%;
+}
+#id_Active_Description{
+  resize: none;
+  width: 570px;
+  height: 100px;
+}
+#div_id_Active_Description{
+margin-top: -4%;
+}
+#s2id_id_Assigned_To{
+  width: 100%;
+}
+#s2id_id_Activity_Type{
+  width: 100%;
+}
+#s2id_id_Action_Required{
+  width: 100%;
+}
+.controls #id_Status{
+
+  height:40px;
+}
+#id_Action_Required{
+  margin-top: 0
+}
+#id_Activity_Type{
+  margin-top: 0;
+  border-radius:0px;
+}
+#id_Exceting_Agency{
+  margin-top: 0;
+  border-radius:0px;
+  height: 35px;
+}
+#id_Associated_with{
+  margin-top: 0;
+  border-radius: 0px;
+  height: 35px;
+}
+#id_Deadline{
+  margin-top: 0;
+  border-radius: 0px;
+  height: 35px;
+}
+#id_Status{
+  margin-top: 0
+}
+#s2id_id_Status{
+width: 100%;
+}
+.select2-container .select2-choice{
+height: 35px;
+}
+#div_id_Action_Required{
+margin-bottom: 6%;
+}

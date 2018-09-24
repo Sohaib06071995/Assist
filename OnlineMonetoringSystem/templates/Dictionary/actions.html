@@ -1,0 +1,14 @@
+{% csrf_token %}
+  {% for u in action1  %}
+  <tr>
+    <td>{{u.Actions}}</td>
+
+    <td>  <button class=" btn default btn-xs black show-form-delete1" style=" position:relative; margin-left: 30%;" data-url="{% url 'delete_action' u.id %}">
+      <span class="glyphicon glyphicon-trash"></span>
+      Delete
+    </button></td>
+  </tr>
+  {% endfor %}
+  <!-- <tr>
+    <td colspan="7" class="text-center bg-warning">NO user</td>
+  </tr> -->

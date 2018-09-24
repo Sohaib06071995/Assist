@@ -1,0 +1,24 @@
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/UserAccount/user_create.css' %}">
+<script src="{% static 'js/plugin.js' %}"></script>
+<form method="post" data-url="{% url 'update_user' user_form.instance.username UserProfileInfo_Form.instance.id %}" class="update_user">
+      <div class="modal-header alert-info" style="height:50px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        <div class="text-left" style="font-size:18px; color:black;">
+                <b>New User </b>
+            </div>
+      </div>
+      <div class="modal-body">
+      {% csrf_token %}
+      {{user_form|crispy}}
+      {{ UserProfileInfo_Form|crispy }}
+      </div>
+      <div class="modal-footer alert-info" style="height:60px;">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary">Edit User</button>
+      <div class="content1" id="notsuccess" style=" display: none; margin-right:60%;margin-top: -7.5%; font-size: 20px;" >OPS!<img src="{% static 'images/ignor.png' %}" alt="">Check Again</div>
+      </div>
+</form>

@@ -1,0 +1,32 @@
+
+
+.dropup {
+    position: relative;
+    display: inline-block;
+}
+
+.dropup-content {
+    display: none;
+    position: absolute;
+
+    min-width: 80px;
+    bottom: 30px;
+    z-index: 1;
+}
+
+.dropup-content button {
+    color: black;
+    padding: 6px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropup-content button:hover {background-color: #ccc}
+
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+.dropup:hover .dropbtn {
+    background-color: #3e8e41;
+}

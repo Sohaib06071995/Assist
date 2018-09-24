@@ -1,0 +1,298 @@
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<script src="{% static 'js/update_status.js' %}"></script>
+<script src="{% static 'js/progress.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/UserAccount/activity_create.css' %}">
+<link rel="stylesheet" href="{% static 'css/UserAccount/user_create.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'assets/global/plugins/font-awesome/css/font-awesome.min.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/global/plugins/simple-line-icons/simple-line-icons.min.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/global/plugins/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/global/plugins/uniform/css/uniform.default.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css' %}" type="text/css">
+
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+  <link rel="stylesheet" href="{% static 'assets/global/plugins/select2/select2.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css' %}" type="text/css">
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link rel="stylesheet" href="{% static 'assets/global/css/components.css' %}" id="style_components" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/global/css/plugins.css' %}" id="style_color"  type="text/css">
+<link rel="stylesheet" href="{% static 'assets/admin/layout/css/layout.css' %}" type="text/css">
+<!-- <link rel="stylesheet" href="{% static 'assets/admin/layout/css/themes/white.css' %}" type="text/css"> -->
+<link rel="stylesheet" href="{% static 'assets/admin/layout/css/custom.css' %}" type="text/css">
+<!-- END THEME STYLES -->
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="text/css">
+
+<style media="screen">
+.controls #post-text{
+    width: 410px;
+  }
+
+
+</style>
+<form method="post" data-url="{% url 'show_dashboard' dashboard_form.instance.id %}" class="show_dashboard" style=" height:730px; width:235%;margin-left:-67%;">
+      <div class="modal-header alert-info" style="height:50px;">
+        {% if "pending" in dashboard_form.instance.Status %}
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="position:fixed; margin-left:220%; margin-top:-5px;"id="bb" >Close
+          </button>
+          {% endif %}
+          {% if "completed" in dashboard_form.instance.Status %}
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="position:fixed; margin-left:220%; margin-top:-5px;"id="bb" >Close
+            </button>
+            {% endif %}
+          {% if "ongoing" in dashboard_form.instance.Status %}
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="position:fixed; margin-left:220%; margin-top:-5px;" id="bb">Close
+            </button>
+            {% endif %}
+
+        <div class="text-left" style="font-size:18px; color:black;">
+                <b>
+                    {{dashboard_form.instance.Active_Description}}
+                 </b>
+            </div>
+            <div class="content" id="success" style=" display:none; margin-top: -2.5%; margin-left: 40%;">Added to Ongoing Tasks<img src="{% static 'images/thick1.png' %}" alt="">Securely</div>
+      </div>
+
+      <div class="modal-body" id="modal-body" style="background-color:white; height:630px; width:100%;">
+        {% csrf_token %}
+      <!-- {{ activities_form|crispy }} -->
+
+      <div class="col-md-4" style="height: 100%;">
+
+        <div class="portlet box blue-steel" >
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-gift"></i>Activity Details
+            </div>
+            <div class="tools">
+              <a href="javascript:;" class="collapse">
+              </a>
+              <a href="#portlet-config" data-toggle="modal" class="config">
+              </a>
+              <a href="" class="fullscreen">
+              </a>
+              <a href="javascript:;" class="reload">
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body" style="height: 500px;">
+            <div class="table-scrollable">
+            <table class="table table-striped table-bordered table-advance table-hover">
+              <tr>
+                <td>Exceting Agency</td>
+                <td>
+                    {{dashboard_form.instance.Exceting_Agency}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Deadline</td>
+                <td>
+                    {{dashboard_form.instance.Deadline}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Assigned Date</td>
+                <td>
+                    {{dashboard_form.instance.Assigned_Date}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Activity Type</td>
+                <td>
+                    {{dashboard_form.instance.Activity_Type}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Associated With</td>
+                <td>
+                    {{dashboard_form.instance.Associated_with}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Action Required</td>
+                <td>
+                    {{dashboard_form.instance.Action_Required}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Assigned By</td>
+                <td>
+                    {{dashboard_form.instance.Assigned_By}}
+                    </td>
+              </tr>
+              <tr>
+                <td>Assigned To</td>
+                <td>
+                  {% for assTo in dashboard_form.instance.Assigned_To.all %}
+                  {{assTo}}
+                  <br>
+                  {%endfor%}
+                    </td>
+              </tr>
+            <tbody>
+
+            </tbody>
+            </table>
+            </div>
+        </div>
+
+      </div>
+      </div>
+
+      <!-- BEGIN Portlet PORTLET-->
+      <div class="col-md-4 " style="height: 100%;">
+
+        <div class="portlet box blue-steel" >
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-gift"></i>Progress
+            </div>
+            <div class="tools">
+              <a href="javascript:;" class="collapse">
+              </a>
+              <a href="#portlet-config" data-toggle="modal" class="config">
+              </a>
+              <a href="" class="fullscreen">
+              </a>
+              <a href="javascript:;" class="reload">
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body" style="height: 500px;">
+            <div class="table-scrollable">
+            <table class="table table-striped table-bordered table-advance table-hover" id="user_account_tablep">
+              <thead class="portlet box blue-steel" style="color:white;">
+
+              </thead>
+            <tbody>
+              {% include "Dashboard/progress.html" %}
+            </tbody>
+            </table>
+            </div>
+        </div>
+
+      </div>
+      </div>
+<!-- END Portlet PORTLET-->
+
+      <div class="col-md-4 " style="height: 100%;">
+        <!-- BEGIN Portlet PORTLET-->
+        <div class="portlet box blue-steel" >
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-comment"></i>Comments
+            </div>
+            <div class="tools">
+              <a href="javascript:;" class="collapse">
+              </a>
+              <a href="#portlet-config" data-toggle="modal" class="config">
+              </a>
+              <a href="" class="fullscreen">
+              </a>
+              <a href="javascript:;" class="reload">
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body" style="height: 500px">
+            <div class="table-scrollable" style="overflow:hidden;overflow-y: scroll;height: 400px;">
+            <table class="table table-striped table-bordered table-advance table-hover" id="user_account_tablex">
+              <thead>
+                <!-- <tr>
+                  <td>display contenct</td>
+                </tr> -->
+              </thead>
+
+            <tbody>
+
+              {%include "Dashboard/comments_list.html" %}
+            </tbody>
+
+            </table>
+            </div>
+            {{ comments_form|crispy }}
+          <button type="submit" class="btn btn-primary" style="margin-left:90%;margin-top:-19%"><i class="fa fa-check"></i></button>
+        </div>
+        <!-- END Portlet PORTLET-->
+      </div>
+      </div>
+      </div>
+
+      <div class="modal-footer alert-info" style="height:60px;">
+      </div>
+</form>
+{% if "pending" in dashboard_form.instance.Status %}
+{% if "administration" in type %}
+<button class="btn btn-primary show-form-update1" data-url="{% url 'update_status' dashboard_form.instance.id %}" id="bt" onclick="block_none()"style="position: fixed;margin-left:-350px; margin-top: -300px;">
+  Ongoind
+<span class="glyphicon glyphicon-share-alt"></span>
+</button>
+{% endif %}
+{% endif %}
+
+<button class="btn btn-primary show-formm" data-url="{% url 'progress_create' dashboard_form.instance.id %}" style="display:none;position: fixed; margin-left: 100px;margin-top: -480px;" id="btprogress">
+<span class="glyphicon glyphicon-plus"></span>
+Add Progress
+</button>
+
+{% if "ongoing" in dashboard_form.instance.Status %}
+<button class="btn btn-primary show-formm" data-url="{% url 'progress_create' dashboard_form.instance.id %}" style="position: fixed; margin-left: 100px;margin-top: -480px;" >
+<span class="glyphicon glyphicon-plus"></span>
+Add Progress
+</button>
+{% endif %}
+
+
+<script src="{% static 'assets/global/plugins/jquery.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/jquery-migrate.min.js' %}"></script>
+
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="{% static 'assets/global/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/jquery.blockui.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/jquery.cokie.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/uniform/jquery.uniform.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{% static 'assets/global/plugins/select2/select2.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js' %}"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- END CORE PLUGINS -->
+<script src="{% static 'assets/global/scripts/metronic.js' %}"></script>
+<script src="{% static 'assets/admin/layout/scripts/layout.js' %}"></script>
+<script src="{% static 'assets/admin/layout/scripts/quick-sidebar.js' %}"></script>
+<script src="{% static 'assets/admin/layout/scripts/demo.js' %}"></script>
+
+<script>
+jQuery(document).ready(function() {
+  $('table').scrollTableBody()
+   Metronic.init(); // init metronic core components
+Layout.init(); // init current layout
+QuickSidebar.init(); // init quick sidebar
+Demo.init(); // init demo features
+});
+$('#bb').click(function() {
+
+    window.location.href = "/account/"
+    });
+
+
+$('.btn').on('keydown',function(e)
+{
+  if (e.keyCode == 13){
+    return false;
+  }
+});
+function block_none(){
+document.getElementById('bt').classList.add('hide');
+document.getElementById('btprogress').classList.add('show');
+}
+
+</script>

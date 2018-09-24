@@ -1,0 +1,182 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="{% static 'css/UserAccount/base.css' %}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap CDN -->
+    {% block head %}
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+    <title>Base</title>
+
+    {% endblock %}
+
+
+    <link rel="stylesheet" href="{% static 'assets/global/plugins/font-awesome/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/global/plugins/simple-line-icons/simple-line-icons.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/global/plugins/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/global/plugins/uniform/css/uniform.default.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css' %}" type="text/css">
+
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link rel="stylesheet" href="{% static 'assets/global/css/components.css' %}" id="style_components" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/global/css/plugins.css' %}" id="style_color"  type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/admin/layout/css/layout.css' %}" type="text/css">
+    <!-- <link rel="stylesheet" href="{% static 'assets/admin/layout/css/themes/white.css' %}" type="text/css"> -->
+    <link rel="stylesheet" href="{% static 'assets/admin/layout/css/custom.css' %}" type="text/css">
+    <!-- END THEME STYLES -->
+      <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="text/css">
+
+      <style media="screen">
+      /* .button-clicked {
+        color: red;
+
+} */
+#bt{
+  margin-left: 80%;
+  margin-bottom: -3%;
+}
+#bt1{
+  margin-left: 80%;
+  margin-bottom: -3%;
+}
+#mylink{
+  font-family: serif;
+}
+
+      </style>
+
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+
+        <div class="col-md-13 " style="height: 500%;">
+          <!-- BEGIN Portlet PORTLET-->
+          <div class="portlet box blue-steel" >
+
+            <div class="portlet-title">
+              <div class="caption">
+                <div class="notification_number" style="width:10%;height:50px;position:fixed;margin-left:20%;margin-top:6px;">
+                  <i class="fa fa-bell-o" style="font-size:20px;"><div style="font-size:14px;position:fixed;margin-top:-23px;margin-left:15px;">{{notification}}</div></i>
+                </div>
+                <button class="w3-bar-item w3-button w3-large"
+                onclick="w3_close()">Close &times;</button>
+              </div>
+            </div>
+            <div class="portlet-body" style="height: 4000px;" >
+              <div class="table-scrollable" style="overflow:hidden;overflow-y: scroll;height: 4000px;">
+              <table class="w3-table-all w3-card-4" id="user_account_table10">
+                <thead>
+
+                </thead>
+
+              <tbody>
+                {% block xx %}
+
+                {% endblock %}
+              </tbody>
+              </table>
+              </div>
+          </div>
+          <!-- END Portlet PORTLET-->
+        </div>
+        </div>
+
+    </div>
+    <div id="main">
+
+    <div class="w3-teal">
+      {% block content1 %}
+      <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()" >&#9776;</button>
+      {% endblock %}
+      <div class="w3-container">
+        <nav class="nav">
+      <ul>
+          <li>
+          {% block name %}  <a href="#" style="padding-top: 10%;"> {% block image %} <img  class="img-circle"  style="height:30px;">{% endblock %} <i class="fa fa-angle-down"></i></a>{% endblock %}
+
+              <ul class="sub-menu">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Profile </a></li>
+                  {% block control_panel %}
+                  {%if 'administration' in type %}
+                  <li><a href="/account/cp"><i class="fa fa-cog fa-spin" style="font-size:20px"></i> Control Panel</a></li>
+                  {% endif %}
+                  {%endblock%}
+                  <li><a href="/account/logout"><i class="fa fa-lock" style="font-size:24px"></i> Log Out</a></li>
+              </ul>
+          </li>
+      </ul>
+      </nav>
+      <div class="notification_number" style="width:20%;height:1%;position:fixed;margin-top:-32px; margin-left:25px;">
+        <i class="fa fa-bell-o" style="font-size:20px;"><div style="font-size:14px;position:fixed;margin-top:-23px;margin-left:15px;">{{notification}}</div></i>
+      </div>
+        <h3>Active Monetoring System</h3>
+      </div>
+    </div>
+
+    </div>
+
+    <script>
+
+    window.onload = function() {
+        var reloading = sessionStorage.getItem("reloading");
+        if (reloading) {
+            sessionStorage.removeItem("reloading");
+            w3_open();
+        }
+    }
+
+    function block_none(){
+  sessionStorage.setItem("reloading", "true");
+  window.location.href = "/account/"
+
+  }
+
+
+
+    function w3_close() {
+      document.getElementById("main").style.marginLeft = "0%";
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("openNav").style.display = "inline-block";
+    }
+    function w3_open() {
+      document.getElementById("main").style.marginLeft = "25%";
+      document.getElementById("mySidebar").style.width = "25%";
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("openNav").style.display = 'none';
+    }
+
+    $(function(){
+      $("tbody").each(function(elem,index){
+        var arr = $.makeArray($("tr",this).detach());
+        arr.reverse();
+          $(this).append(arr);
+      });
+  });
+
+    </script>
+
+  {% endblock %}
+    {% block body%}
+    <h1>Base</h1>
+    {% endblock %}
+  </body>
+</html>
